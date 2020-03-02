@@ -1,9 +1,11 @@
 package test;
 
-import org.junit.*;
 import static org.junit.Assert.*;
 
-import controllayer.*;
+import org.junit.*;
+
+import controllayer.ControlPayStation;
+import controllayer.IllegalCoinException;
 import modellayer.Currency;
 
 /**
