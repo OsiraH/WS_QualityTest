@@ -26,3 +26,4 @@ hs_err_pid*
 # Code files
 DBConnection.java
 .classpath
+/.metadata/
