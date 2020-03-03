@@ -7,7 +7,11 @@ package modellayer;
 
 public class Currency {
 	
-	public enum ValidCurrency { EURO, DKK };
+	public enum ValidCurrency { EURO, DKK, NOK };
+	/*enum ValidCurrency is misleading, because supplied values are not valid currencies for the
+	system. This enum only specifies which currencies can machine recognize. Validation of the
+	currencies takes place in the Validation.java class */
+	
 	public enum ValidCoinType { FRACTION, INTEGER };
 
 }
