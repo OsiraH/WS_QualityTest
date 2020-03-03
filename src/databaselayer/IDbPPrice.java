@@ -6,6 +6,7 @@ public interface IDbPPrice {
 
 	public PPrice getCurrentPrice();
     // Get Price by parking zone id
-	public PPrice getPriceByZoneId(int zoneId) throws DatabaseLayerException;
+	// Return type changed from PPrice to int by testers
+	public int getPriceByZoneId(int zoneId) throws DatabaseLayerException;
     
 }
