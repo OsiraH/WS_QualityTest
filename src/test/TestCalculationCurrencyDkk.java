@@ -33,7 +33,7 @@ public class TestCalculationCurrencyDkk {
 		int expectedParkingTime = 3;	// In minutes
 		int coinValue = 50;
 		Currency.ValidCurrency coinCurrency = Currency.ValidCurrency.DKK;
-		Currency.ValidCoinType coinType = Currency.ValidCoinType.FRACTION;
+		Currency.ValidCoinType coinType = Currency.ValidCoinType.INTEGER;
 		
 		// Act
 		ps.addPayment(coinValue, coinCurrency, coinType);
