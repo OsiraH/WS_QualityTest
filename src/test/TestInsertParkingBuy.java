@@ -27,7 +27,6 @@ public class TestInsertParkingBuy {
 	DatabasePBuy dbpb = null;
 	int result = -1;
 
-	/** Fixture for pay station testing. */
 	@Before
 	public void setUp() {
 		con = DBConnection.getInstance();
@@ -36,11 +35,9 @@ public class TestInsertParkingBuy {
 	
 	@Test
 	public void validVariablesInserted() {
-		result = -1;//1 is value we should get
+		result = -1;
 		PBuy pb = new PBuy();
 		dbpb = new DatabasePBuy();
-		//if I add here dbpb = new DatabasePBuy(); it works but throws error message in assertEquals
-		//to be precise, it throws failure with result -1 - error inserting data
 		pb.setAssociatedPaystation(new PPayStation(10, "Aalborg"));
 		pb.setBuyTime(LocalDate.now());
 		pb.setId(1);
@@ -53,7 +50,7 @@ public class TestInsertParkingBuy {
 		}
 		assertEquals(1, result);
 	}
-	/** Fixture for pay station testing. */
+	
 	@AfterClass
 	public static void cleanUpWhenFinish() {
 		DBConnection.closeConnection();
