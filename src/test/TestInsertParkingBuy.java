@@ -11,6 +11,8 @@ import java.time.LocalTime;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import databaselayer.DBConnection;
@@ -23,47 +25,10 @@ import modellayer.PPrice;
 
 public class TestInsertParkingBuy {
 	
-	DBConnection con = null;
-	DatabasePBuy dbpb = null;
-	int result = -1;
-
-	@Before
-	public void setUp() {
-		con = DBConnection.getInstance();
-		DatabasePBuy dbpb = new DatabasePBuy();
-	}
-	
-	@Test
-	public void validVariablesInserted() {
-		result = -1;
-		PBuy pb = new PBuy();
-		dbpb = new DatabasePBuy();
-		pb.setAssociatedPaystation(new PPayStation(10, "Aalborg"));
-		pb.setBuyTime(LocalDate.now());
-		pb.setId(1);
-		pb.setPayedCentAmount(10.00);
-		pb.setParkingDuration(4);
-		try {
-		result = dbpb.insertParkingBuy(pb);
-		} catch (DatabaseLayerException e) {
-			e.printStackTrace();
-		}
-		assertEquals(1, result);
-	}
-	
-	@AfterClass
-	public static void cleanUpWhenFinish() {
-		DBConnection.closeConnection();
-	}	
-	
-	/**
-	public class TestInsertParkingBuy {
-	
 	static DBConnection con = null;
 	static DatabasePBuy dbpb = null;
 	int result;
 
-	/** Fixture for pay station testing. */
 	@BeforeAll
 	public static void init() {
 		con = DBConnection.getInstance();
@@ -76,7 +41,6 @@ public class TestInsertParkingBuy {
 		PBuy pb = new PBuy();
 		PPayStation pps = new PPayStation(10, "Aalborg");
 		pps.setAmount(0.10);
-		System.out.println("Time bought: " + pps.getTimeBoughtInMinutes() + ", Amount paid : " + pps.getAmount());
 		pb.setAssociatedPaystation(pps);
 		pb.setBuyTime(LocalDate.now());
 		try {
@@ -84,16 +48,13 @@ public class TestInsertParkingBuy {
 		} catch (DatabaseLayerException e) {
 			e.printStackTrace();
 		}
+		System.out.println();dbpb.toString();
 		assertEquals(1, result);
 	}
 	
-	/** Fixture for pay station testing. */
 	@AfterClass
 	public static void cleanUpWhenFinish() {
 		DBConnection.closeConnection();
 	}	
-
-}
-*/
 
 }
