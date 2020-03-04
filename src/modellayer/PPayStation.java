@@ -15,8 +15,10 @@ public class PPayStation {
 	private int id;	
 	// PayStaion model
 	private String payStationModel;
-	// Amount inserted in pay station
-	private double amount = 0;
+	// Amount inserted in pay station. Renamed to add the currency to make it clearer.
+	private double insertedAmountEUR = 0;
+	//Added the following variable to keep track of the Damount inserted in DKK, in case we need to refund the amount.
+	private double insertedAmountDKK = 0;
 	private ControlPrice controlPrice;
 	
 	
@@ -44,11 +46,11 @@ public class PPayStation {
 	}	
 	
 	public double getAmount() {
-		return amount;
+		return insertedAmountEUR;
 	}
 	
 	public void setAmount(double amount) {
-		this.amount = amount;
+		this.insertedAmountEUR = amount;
 	}
 	
 	public void addAmount(Coin coin, PPrice currentPrice) {
@@ -64,7 +66,7 @@ public class PPayStation {
 			valueInCent = getEuroCoinValueInCent(coin);
 		}
 		
-		this.amount += valueInCent;
+		this.insertedAmountEUR += valueInCent;
 	}
 	
 	public int getTimeBoughtInMinutes() {
@@ -72,7 +74,7 @@ public class PPayStation {
 		PPrice aPrice = controlPrice.getCurrentPrice();
 		int timeBoughtInMinutes = 0;
 
-		double timeBoughtInSeconds = this.amount * aPrice.getParkingPrice();
+		double timeBoughtInSeconds = this.insertedAmountEUR * aPrice.getParkingPrice();
 		timeBoughtInMinutes = (int) ((timeBoughtInSeconds + 59) / 60);
 
 		return timeBoughtInMinutes;
