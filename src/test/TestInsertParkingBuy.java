@@ -55,5 +55,45 @@ public class TestInsertParkingBuy {
 	public static void cleanUpWhenFinish() {
 		DBConnection.closeConnection();
 	}	
+	
+	/**
+	public class TestInsertParkingBuy {
+	
+	static DBConnection con = null;
+	static DatabasePBuy dbpb = null;
+	int result;
+
+	/** Fixture for pay station testing. */
+	@BeforeAll
+	public static void init() {
+		con = DBConnection.getInstance();
+		dbpb = new DatabasePBuy();
+	}
+	
+	@Test
+	@DisplayName ("TC01")
+	public void validVariablesInserted() {
+		PBuy pb = new PBuy();
+		PPayStation pps = new PPayStation(10, "Aalborg");
+		pps.setAmount(0.10);
+		System.out.println("Time bought: " + pps.getTimeBoughtInMinutes() + ", Amount paid : " + pps.getAmount());
+		pb.setAssociatedPaystation(pps);
+		pb.setBuyTime(LocalDate.now());
+		try {
+		result = dbpb.insertParkingBuy(pb);
+		} catch (DatabaseLayerException e) {
+			e.printStackTrace();
+		}
+		assertEquals(1, result);
+	}
+	
+	/** Fixture for pay station testing. */
+	@AfterClass
+	public static void cleanUpWhenFinish() {
+		DBConnection.closeConnection();
+	}	
+
+}
+*/
 
 }
