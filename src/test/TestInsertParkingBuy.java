@@ -39,8 +39,8 @@ public class TestInsertParkingBuy {
 	@DisplayName ("TC01")
 	public void validVariablesInserted() {
 		PBuy pb = new PBuy();
-		PPayStation pps = new PPayStation(10, "Aalborg");
-		pps.setAmount(0.10);
+		PPayStation pps = new PPayStation(1, "Aalborg");
+		pps.setAmount(10);
 		pb.setAssociatedPaystation(pps);
 		pb.setBuyTime(LocalDate.now());
 		try {
@@ -48,7 +48,7 @@ public class TestInsertParkingBuy {
 		} catch (DatabaseLayerException e) {
 			e.printStackTrace();
 		}
-		System.out.println();dbpb.toString();
+		
 		assertEquals(1, result);
 	}
 	

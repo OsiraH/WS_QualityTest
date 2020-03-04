@@ -1,6 +1,7 @@
 package databaselayer;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.lang.NullPointerException;
 
 import modellayer.PBuy;
@@ -20,35 +21,37 @@ public class DatabasePBuy implements IDbPBuy {
 
 		Connection con = DBConnection.getInstance().getDBcon();
 
-		String baseInsert = "insert into PBuy (buyTime, duration, payedAmount, pPaystation_id) values ";
-		baseInsert += "(" + sqldate + ", " + parkingDuration + ", " + payedCentAmount + ", " + payStation.getId() + ")";
+		String baseInsert = "INSERT INTO PBuy (buyTime, duration, payedAmount, pPaystation_id)";
+		baseInsert += "\nVALUES (" + sqldate + ", " + parkingDuration + ", " + payedCentAmount + ", " + payStation.getId() + ")";
+		
 		System.out.println(baseInsert);
 
 		try {
 			Statement stmt = con.createStatement();
 			stmt.setQueryTimeout(5);
-			stmt.executeUpdate(baseInsert, Statement.RETURN_GENERATED_KEYS);
+			stmt.executeQuery(baseInsert);
 	
 			ResultSet rs = stmt.getGeneratedKeys();
-		    if (rs.next()) {
+		    if (rs.getRow() > 1 && rs.next()) {
 		    	insertedKey = rs.getInt(1);
 		    }
 		    stmt.close();
 		} catch (SQLException ex) {
-			insertedKey = -1;
-			DatabaseLayerException dle = new DatabaseLayerException("Error inserting data");
-			dle.setStackTrace(ex.getStackTrace());
-			throw dle;
-		} catch (NullPointerException ex) {
-			insertedKey = -2;
-			DatabaseLayerException dle = new DatabaseLayerException("Null pointer exception - possibly Connection object");
-			dle.setStackTrace(ex.getStackTrace());
-			throw dle;
-		} catch (Exception ex) {
-			insertedKey = -3;
-			DatabaseLayerException dle = new DatabaseLayerException("Data not inserted! Technical error");
-			dle.setStackTrace(ex.getStackTrace());
-			throw dle;
+			//Note from testers: the commented catch methods are preventing the correct insertion of data. Need to investigate further.
+//			insertedKey = -1;
+//			DatabaseLayerException dle = new DatabaseLayerException("Error inserting data");
+//			dle.setStackTrace(ex.getStackTrace());
+//			throw dle;
+//		} catch (NullPointerException ex) {
+//			insertedKey = -2;
+//			DatabaseLayerException dle = new DatabaseLayerException("Null pointer exception - possibly Connection object");
+//			dle.setStackTrace(ex.getStackTrace());
+//			throw dle;
+//		} catch (Exception ex) {
+//			insertedKey = -3;
+//			DatabaseLayerException dle = new DatabaseLayerException("Data not inserted! Technical error");
+//			dle.setStackTrace(ex.getStackTrace());
+//			throw dle;
 		} finally {
 			DBConnection.closeConnection();
 		}
