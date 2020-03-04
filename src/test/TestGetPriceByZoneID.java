@@ -30,7 +30,7 @@ public class TestGetPriceByZoneID {
 		DatabasePPrice dbPPrice = null;
 		int zoneID = -1;
 
-		/** Fixture for pay station testing. */
+		/** Fixture for pay station price update testing. */
 		@Before
 		public void setUp() {
 			con = DBConnection.getInstance();
