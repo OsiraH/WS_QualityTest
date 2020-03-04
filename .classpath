@@ -7,6 +7,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
-	<classpathentry kind="lib" path="C:/Users/Acer/Downloads/sqljdbc4 (1).jar"/>
+	<classpathentry kind="lib" path="C:/Users/Doremi/Documents/Computer Science/External libraries/JUnit JAR/sqljdbc4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

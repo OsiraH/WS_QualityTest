@@ -3,6 +3,8 @@ package test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.After;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -20,7 +22,7 @@ class TestGetTimeBoughtInMinutes {
 	}
 
 	@Test
-	void test() throws IllegalCoinException {
+	void testGet20MinFor50EUR() throws IllegalCoinException {
 		
 		// Arrange
 		int expectedParkingTime = 20;	// In minutes
@@ -32,8 +34,13 @@ class TestGetTimeBoughtInMinutes {
 		payStationCTR.addPayment(coinValue, coinCurrency, coinType);
 			
 		// Assert
-		assertEquals(expectedParkingTime, payStationCTR.readDisplay(), "Should display 20 for 50 DKK");
+		assertEquals(expectedParkingTime, payStationCTR.readDisplay(), "Should display 20 min for 50 EUR");
 
+	}
+	
+	@After
+	public void cleanUp() {
+		payStationCTR.setReady();
 	}
 
 }
